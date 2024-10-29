@@ -35,28 +35,28 @@ export class Api1Controller {
   //Post method
   @Post('postapi')
   postData(@Body() CreateApi1Dto: CreateApi1Dto) {
-    this.logger.log('log from postapi');
-    // return this.api1Service.postData(CreateApi1Dto);
+    // this.logger.log('log from postapi');
+    return this.api1Service.postData(CreateApi1Dto);
   }
 
   //Update with Post method
   @Post('updateapi')
   postUpdate(@Body() UpdateApi1Dto: UpdateApi1Dto) {
-    this.logger.log('log from updateapi');
-    // return this.api1Service.postUpdate(UpdateApi1Dto);
+    // this.logger.log('log from updateapi');
+    return this.api1Service.postUpdate(UpdateApi1Dto);
   }
 
   //Delete method ด้วย param
   @Delete('deleteapi1/:code')
   deleteData1(@Param('code') code: string) {
-    this.logger.log('log from deleteapi1 : ' + code);
-    // return this.api1Service.deleteData(code);
+    // this.logger.log('log from deleteapi1 : ' + code);
+    return this.api1Service.deleteData1(code);
   }
 
   //Delete method ด้วย query message
   @Delete('deleteapi2/?')
   deleteData2(@Query('code') code: string) {
-    this.logger.log('log from deleteapi2 : ' + code);
-    // return this.api1Service.deleteData(code);
+    // this.logger.log('log from deleteapi2 : ' + code);
+    return this.api1Service.deleteData2(code);
   }
 }

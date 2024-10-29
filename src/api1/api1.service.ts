@@ -19,16 +19,47 @@ export class Api1Service {
     // this.logger.log(CreateApi1Dto)
     const { code, name } = CreateApi1Dto;
     // console.log(code, name);
-    // const coll1 = await this.Coll1Doc.create({
-    //   code: code,
-    //   name: name,
-    // });
-
     const coll1 = await this.Coll1Doc.create({
-      code: CreateApi1Dto.code,
-      name: CreateApi1Dto.name,
+      code: code,
+      name: name,
     });
 
+    // const coll1 = await this.Coll1Doc.create({
+    //   code: CreateApi1Dto.code,
+    //   name: CreateApi1Dto.name,
+    // });
+
     return coll1.save();
+  }
+
+  async postData(CreateApi1Dto) {
+    const { code, name } = CreateApi1Dto;
+    const coll1 = await this.Coll1Doc.create({
+      code: code,
+      name: name,
+    });
+    return coll1.save();
+  }
+
+  async postUpdate(UpdateApi1Dto) {
+    const { code, name } = UpdateApi1Dto;
+    const coll1 = await this.Coll1Doc.findOneAndUpdate(
+      { code: code },
+      { name: name },
+      { new: true },
+    );
+    return coll1;
+  }
+
+  //ลบข้อมูล รูปแบบที่1
+  async deleteData1(id: string) {
+    return await this.Coll1Doc.findByIdAndDelete(id).exec();
+  }
+
+  //ลบข้อมูล รูปแบบที่1
+  async deleteData2(code: string) {
+    return await this.Coll1Doc.deleteOne({
+      code: code,
+    }).exec();
   }
 }
