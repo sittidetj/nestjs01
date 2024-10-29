@@ -20,16 +20,16 @@ export class Api1Controller {
 
   @Get('listapiusers')
   findAll() {
-    this.logger.log('log from listapiusers');
-    // return this.api1Service.findAll();
+    // this.logger.log('log from listapiusers');
+    return this.api1Service.findAll();
   }
 
   //Put method
   @Put('putapi')
   putData(@Body() CreateApi1Dto: CreateApi1Dto) {
-    // console.log(CreateApi1Dto);
-    this.logger.log('log from putapi');
-    // return this.api1Service.putData(CreateApi1Dto);
+    console.log(CreateApi1Dto);
+    // this.logger.log('log from putapi : ' + JSON.stringify(CreateApi1Dto));
+    return this.api1Service.putData(CreateApi1Dto);
   }
 
   //Post method
@@ -49,14 +49,14 @@ export class Api1Controller {
   //Delete method ด้วย param
   @Delete('deleteapi1/:code')
   deleteData1(@Param('code') code: string) {
-    this.logger.log('log from deleteapi1');
+    this.logger.log('log from deleteapi1 : ' + code);
     // return this.api1Service.deleteData(code);
   }
 
   //Delete method ด้วย query message
   @Delete('deleteapi2/?')
   deleteData2(@Query('code') code: string) {
-    this.logger.log('log from deleteapi2');
+    this.logger.log('log from deleteapi2 : ' + code);
     // return this.api1Service.deleteData(code);
   }
 }

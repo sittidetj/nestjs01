@@ -1,9 +1,12 @@
-import { Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({ collection: 'coll1' })
 export class Coll1 {
+  @Prop()
   code: string;
+  @Prop()
   name: string;
+  @Prop()
   isActive?: boolean;
 }
 

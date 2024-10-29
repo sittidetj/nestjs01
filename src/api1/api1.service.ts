@@ -1,26 +1,34 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { CreateApi1Dto } from './dto/create-api1.dto';
 import { UpdateApi1Dto } from './dto/update-api1.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Coll1, Coll1Document } from './schema/api1-schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class Api1Service {
-  create(createApi1Dto: CreateApi1Dto) {
-    return 'This action adds a new api1';
+  logger: Logger = new Logger('Api1Service');
+  constructor(
+    @InjectModel(Coll1.name) private Coll1Doc: Model<Coll1Document>,
+  ) {}
+  async findAll() {
+    return await this.Coll1Doc.find().exec();
   }
 
-  findAll() {
-    return `This action returns all api1`;
-  }
+  async putData(CreateApi1Dto) {
+    // this.logger.log(CreateApi1Dto)
+    const { code, name } = CreateApi1Dto;
+    // console.log(code, name);
+    // const coll1 = await this.Coll1Doc.create({
+    //   code: code,
+    //   name: name,
+    // });
 
-  findOne(id: number) {
-    return `This action returns a #${id} api1`;
-  }
+    const coll1 = await this.Coll1Doc.create({
+      code: CreateApi1Dto.code,
+      name: CreateApi1Dto.name,
+    });
 
-  update(id: number, updateApi1Dto: UpdateApi1Dto) {
-    return `This action updates a #${id} api1`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} api1`;
+    return coll1.save();
   }
 }
