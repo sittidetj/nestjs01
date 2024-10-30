@@ -6,6 +6,6 @@ export class findApi1Dto {
   @Field() //ประกาศให้เป็น field เพื่อให้ graphQL รู้จักแล้วนำไปใช้งานได้
   code: string;
 
-  @Field()
+  @Field({ nullable: true })
   name: string;
 }

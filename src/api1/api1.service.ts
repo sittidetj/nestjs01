@@ -62,4 +62,14 @@ export class Api1Service {
       code: code,
     }).exec();
   }
+
+  //Resolver Service
+  async findCode(filter: { code: string; name: string }) {
+    // console.log('from find by code service');
+    // console.log(filter);
+    return await this.Coll1Doc.findOne({
+      code: filter.code,
+      // name: filter.name,
+    }).exec();
+  }
 }

@@ -17,6 +17,7 @@ export class Api1Resolver {
 
   @Query(() => Coll1, { name: 'coll1_findone' })
   findCode(@Args('filter') filter: findApi1Dto) {
-    console.log(filter);
+    // console.log(filter);
+    return this.api1Service.findCode(filter);
   }
 }

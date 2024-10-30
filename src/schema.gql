@@ -15,5 +15,5 @@ type Query {
 
 input findApi1Dto {
   code: String!
-  name: String!
+  name: String
 }
