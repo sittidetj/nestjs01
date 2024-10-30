@@ -1,12 +1,17 @@
+import { Field, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({ collection: 'coll1' })
+@ObjectType()
 export class Coll1 {
   @Prop()
+  @Field()
   code: string;
   @Prop()
+  @Field()
   name: string;
   @Prop()
+  @Field({ nullable: true })
   isActive?: boolean;
 }
 

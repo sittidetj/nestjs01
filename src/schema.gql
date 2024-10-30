@@ -1,0 +1,13 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Coll1 {
+  code: String!
+  name: String!
+  isActive: Boolean
+}
+
+type Query {
+  coll1: [Coll1!]!
+}
