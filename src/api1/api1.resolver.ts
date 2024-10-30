@@ -1,6 +1,7 @@
-import { Query, Resolver } from '@nestjs/graphql';
+import { Args, Query, Resolver } from '@nestjs/graphql';
 import { Coll1 } from './schema/api1-schema';
 import { Api1Service } from './api1.service';
+import { findApi1Dto } from './dto/find-api1-dto';
 
 @Resolver(() => Coll1)
 export class Api1Resolver {
@@ -12,5 +13,10 @@ export class Api1Resolver {
   @Query(() => [Coll1], { name: 'coll1' })
   findAll() {
     return this.api1Service.findAll(); //กำหนดให้ไปยัง service ที่ต้องการ
+  }
+
+  @Query(() => Coll1, { name: 'coll1_findone' })
+  findCode(@Args('filter') filter: findApi1Dto) {
+    console.log(filter);
   }
 }

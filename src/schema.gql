@@ -10,4 +10,10 @@ type Coll1 {
 
 type Query {
   coll1: [Coll1!]!
+  coll1_findone(filter: findApi1Dto!): Coll1!
+}
+
+input findApi1Dto {
+  code: String!
+  name: String!
 }
