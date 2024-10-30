@@ -12,13 +12,16 @@ import {
 import { Api1Service } from './api1.service';
 import { CreateApi1Dto } from './dto/create-api1.dto';
 import { UpdateApi1Dto } from './dto/update-api1.dto';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('API1')
 @Controller('api1')
 export class Api1Controller {
   logger: Logger = new Logger(Api1Controller.name);
   constructor(private readonly api1Service: Api1Service) {}
 
   @Get('listapiusers')
+  @ApiOperation({ summary: 'API สำหรับดึงรายการข้อมูลทั้งหมด' })
   findAll() {
     // this.logger.log('log from listapiusers');
     return this.api1Service.findAll();
@@ -26,6 +29,11 @@ export class Api1Controller {
 
   //Put method
   @Put('putapi')
+  //อธิบาย status code ต่างๆได้
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 400, description: 'Missing info: parameter' })
+  @ApiResponse({ status: 200, description: 'OK' })
+  @ApiBody({ type: CreateApi1Dto })
   putData(@Body() CreateApi1Dto: CreateApi1Dto) {
     console.log(CreateApi1Dto);
     // this.logger.log('log from putapi : ' + JSON.stringify(CreateApi1Dto));
