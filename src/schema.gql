@@ -6,6 +6,7 @@ type Coll1 {
   code: String!
   name: String!
   isActive: Boolean
+  concat: String
 }
 
 type Query {

@@ -1,4 +1,4 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { Coll1 } from './schema/api1-schema';
 import { Api1Service } from './api1.service';
 import { findApi1Dto } from './dto/find-api1-dto';
@@ -19,5 +19,13 @@ export class Api1Resolver {
   findCode(@Args('filter') filter: findApi1Dto) {
     // console.log(filter);
     return this.api1Service.findCode(filter);
+  }
+
+  @ResolveField(() => String, { name: 'concat', nullable: true })
+  findConcat(@Parent() vo: Coll1) {
+    const { code, name } = vo;
+    console.log('vo');
+    console.log(code, name);
+    return `code: ${code} and name: ${name}`;
   }
 }
